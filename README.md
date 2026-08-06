@@ -3,6 +3,7 @@
 planning to use react and vite
 
 Basic structure
+```text
 rajagiri-olx/
 │
 ├── src/
@@ -26,3 +27,4 @@ rajagiri-olx/
 │   ├── App.jsx
 │   ├── main.jsx
 │   └── App.css
+```
