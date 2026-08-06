@@ -2,29 +2,52 @@
 
 planning to use react and vite
 
-Basic structure
+## Project Structure
+
 ```text
 rajagiri-olx/
-│
+├── public/
 ├── src/
-│   ├── components/
-│   │   ├── Navbar.jsx
-│   │   ├── ProductCard.jsx
-│   │   ├── SearchBar.jsx
-│   │   ├── CategoryList.jsx
-│   │   └── Footer.jsx
-│   │
-│   ├── pages/
-│   │   ├── Home.jsx
-│   │   ├── ProductDetails.jsx
-│   │   ├── AddProduct.jsx
-│   │   ├── Login.jsx
-│   │   └── MyListings.jsx
-│   │
 │   ├── assets/
+│   │   ├── images/
+│   │   └── icons/
+│   ├── components/
+│   │   ├── Navbar/
+│   │   ├── Footer/
+│   │   ├── ProductCard/
+│   │   ├── SearchBar/
+│   │   ├── CategoryFilter/
+│   │   ├── PriceFilter/
+│   │   ├── Loader/
+│   │   └── ProtectedRoute/
+│   ├── pages/
+│   │   ├── Home/
+│   │   ├── ProductDetails/
+│   │   ├── AddProduct/
+│   │   ├── EditProduct/
+│   │   ├── Login/
+│   │   ├── Register/
+│   │   ├── MyListings/
+│   │   ├── Wishlist/
+│   │   └── NotFound/
+│   ├── context/
+│   │   ├── AuthContext.jsx
+│   │   └── ProductContext.jsx
+│   ├── hooks/
+│   │   └── useLocalStorage.js
+│   ├── services/
+│   │   └── productService.js
 │   ├── data/
 │   │   └── products.js
+│   ├── styles/
+│   │   ├── globals.css
+│   │   └── variables.css
 │   ├── App.jsx
+│   ├── App.css
 │   ├── main.jsx
-│   └── App.css
+│   └── index.css
+├── .gitignore
+├── package.json
+├── vite.config.js
+└── README.md
 ```
