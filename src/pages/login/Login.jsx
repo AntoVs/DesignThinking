@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./Login.css";
 
-function Login({ onSignup }) {
+function Login({ onSignup, onLogin }) {
     const [uid, setUid] = useState("");
     const [password, setPassword] = useState("");
     const [message, setMessage] = useState("");
@@ -25,7 +25,7 @@ function Login({ onSignup }) {
             setMessage("Login successful!");
 
             setTimeout(() => {
-                window.location.href = "home.html";
+                 onLogin();
             }, 1000);
         } else {
             setMessageColor("red");
@@ -57,7 +57,7 @@ function Login({ onSignup }) {
     };
 
     return (
-        <main>
+        <main className="login-page">
             <div className="form-container">
 
                 <div className="login-header">
