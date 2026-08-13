@@ -1,0 +1,239 @@
+/* ==========================
+       PRODUCT CARD
+========================== */
+
+.card {
+    background: var(--card);
+
+    border-radius: 16px;
+
+    overflow: hidden;
+
+    box-shadow: var(--shadow);
+
+    transition: .3s;
+
+    display: flex;
+    flex-direction: column;
+
+    position: relative;
+
+    animation: fadeUp .5s ease;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+
+    box-shadow: 0 15px 35px rgba(0, 0, 0, .15);
+}
+
+
+/* ==========================
+       PRODUCT IMAGE
+========================== */
+
+.card img {
+    width: 100%;
+
+    height: 220px;
+
+    object-fit: cover;
+
+    background: #ddd;
+}
+
+
+/* ==========================
+          WISHLIST
+========================== */
+
+.wishlist {
+    position: absolute;
+
+    top: 15px;
+    right: 15px;
+
+    width: 42px;
+    height: 42px;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: white;
+
+    border: none;
+
+    cursor: pointer;
+
+    font-size: 1.2rem;
+
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .15);
+
+    transition: .25s;
+
+    z-index: 2;
+}
+
+.wishlist:hover {
+    color: #ff3d6b;
+
+    transform: scale(1.08);
+}
+
+.wishlist.active {
+    color: #ff3d6b;
+}
+
+
+/* ==========================
+        CARD CONTENT
+========================== */
+
+.card-content {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+
+    padding: 18px;
+
+    flex: 1;
+}
+
+.card-content h3 {
+    font-size: 1.1rem;
+
+    font-weight: 600;
+}
+
+
+/* ==========================
+           PRICE
+========================== */
+
+.price {
+    font-size: 1.4rem;
+
+    font-weight: 700;
+
+    color: var(--primary);
+}
+
+
+/* ==========================
+         CONDITION
+========================== */
+
+.condition {
+    display: inline-block;
+
+    width: fit-content;
+
+    padding: 5px 12px;
+
+    border-radius: 999px;
+
+    background: #EEF5FF;
+
+    color: var(--primary);
+
+    font-size: .8rem;
+
+    font-weight: 600;
+}
+
+
+/* ==========================
+          CATEGORY
+========================== */
+
+.category {
+    color: var(--muted);
+
+    font-size: .9rem;
+}
+
+
+/* ==========================
+            SELLER
+========================== */
+
+.seller {
+    font-weight: 500;
+}
+
+
+/* ==========================
+          LOCATION
+========================== */
+
+.location {
+    color: var(--muted);
+
+    font-size: .9rem;
+}
+
+
+/* ==========================
+           POSTED
+========================== */
+
+.posted {
+    color: #888;
+
+    font-size: .82rem;
+}
+
+
+/* ==========================
+       DETAILS BUTTON
+========================== */
+
+.details-btn {
+    margin-top: auto;
+
+    padding: 12px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    background: var(--primary);
+
+    color: white;
+
+    font-weight: 600;
+
+    transition: .25s;
+}
+
+.details-btn:hover {
+    background: var(--primary-dark);
+}
+
+
+/* ==========================
+         ANIMATION
+========================== */
+
+@keyframes fadeUp {
+
+    from {
+        opacity: 0;
+
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform: translateY(0);
+    }
+
+}
