@@ -1,15 +1,17 @@
-import { useState } from "react";
-import products from "../../data/products";
-import ProductCard from "../../components/ProductCard/ProductCard";
-import Nav from "../../components/Nav/Nav";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Home.css";
 
+import products from "../../data/products";
+import Nav from "../../components/Nav/Nav";
+
 function Home() {
+
+    const navigate = useNavigate();
+
     const [search, setSearch] = useState("");
-    const [category, setCategory] = useState("All");
-    const [condition, setCondition] = useState("All");
-    const [maxPrice, setMaxPrice] = useState("");
-    const [sortBy, setSortBy] = useState("default");
+    const [selectedCategory, setSelectedCategory] = useState("All");
+
 
     const categories = [
         "All",
@@ -22,434 +24,285 @@ function Home() {
         "Others"
     ];
 
-    const filteredProducts = products
-        .filter((product) => {
-            const keyword = search.toLowerCase();
 
-            const searchMatch =
-                product.name.toLowerCase().includes(keyword) ||
-                product.category.toLowerCase().includes(keyword) ||
-                product.seller.toLowerCase().includes(keyword);
+    // =========================
+    // FILTER PRODUCTS
+    // =========================
 
-            const categoryMatch =
-                category === "All" ||
-                product.category === category;
+    const filteredProducts = products.filter((product) => {
 
-            const conditionMatch =
-                condition === "All" ||
-                product.condition === condition;
+        const categoryMatch =
+            selectedCategory === "All" ||
+            product.category === selectedCategory;
 
-            const priceMatch =
-                maxPrice === "" ||
-                product.price <= Number(maxPrice);
+        const searchMatch =
+            product.name
+                .toLowerCase()
+                .includes(search.toLowerCase());
 
-            return (
-                searchMatch &&
-                categoryMatch &&
-                conditionMatch &&
-                priceMatch
-            );
-        })
-        .sort((a, b) => {
-            if (sortBy === "low") {
-                return a.price - b.price;
-            }
+        return categoryMatch && searchMatch;
+    });
 
-            if (sortBy === "high") {
-                return b.price - a.price;
-            }
 
-            if (sortBy === "az") {
-                return a.name.localeCompare(b.name);
-            }
+    // Show only 6 products on home
+    const latestProducts = filteredProducts.slice(0, 6);
 
-            return 0;
-        });
-
-    const clearFilters = () => {
-        setSearch("");
-        setCategory("All");
-        setCondition("All");
-        setMaxPrice("");
-        setSortBy("default");
-    };
-
-    const handleLogout = () => {
-        const confirmed = window.confirm(
-            "Are you sure you want to logout?"
-        );
-
-        if (confirmed) {
-            window.location.reload();
-        }
-    };
 
     return (
         <div className="home-page">
 
-            {/* ================= HEADER ================= */}
 
-            <header className="header">
+            {/* =========================
+                NAVBAR
+            ========================= */}
 
-                <div className="logo">
-
-                    <img
-                        src="/images/logo.jpg"
-                        alt="Spot Logo"
-                    />
-
-                    <div>
-                        <h1>
-                            Spot<span>.</span>
-                        </h1>
-
-                        <p>
-                            Rajagiri Marketplace
-                        </p>
-                    </div>
-
-                </div>
+            <Nav />
 
 
-                <div className="search-container">
+            {/* =========================
+                CATEGORY BAR
+            ========================= */}
 
-                    <input
-                        type="text"
-                        placeholder="Search books, laptops, hostel essentials..."
-                        value={search}
-                        onChange={(e) =>
-                            setSearch(e.target.value)
-                        }
-                    />
+            <div className="category-bar">
 
-                    <button type="button">
-                        Search
-                    </button>
+                {categories.map((category) => (
 
-                </div>
-
-
-                <Nav />
-
-
-                <div className="header-actions">
-
-                    <button className="sell-btn">
-                        + Sell
-                    </button>
-
-                    <button>
-                        Profile
-                    </button>
-
-                    <button onClick={handleLogout}>
-                        Logout
-                    </button>
-
-                </div>
-
-            </header>
-
-
-            {/* ================= CATEGORY BAR ================= */}
-
-            <section className="category-bar">
-
-                {categories.map((item) => (
                     <button
-                        key={item}
-                        className={`category-btn ${
-                            category === item ? "active" : ""
-                        }`}
-                        onClick={() => setCategory(item)}
+                        key={category}
+                        className={
+                            selectedCategory === category
+                                ? "category-btn active"
+                                : "category-btn"
+                        }
+                        onClick={() =>
+                            setSelectedCategory(category)
+                        }
                     >
-                        {item}
+                        {category}
                     </button>
+
                 ))}
 
-            </section>
+            </div>
 
 
-            {/* ================= HERO ================= */}
+            {/* =========================
+                HERO
+            ========================= */}
 
-            <section className="hero">
+            <section className="home-hero">
 
                 <div>
 
                     <h2>
-                        Buy & Sell Within Rajagiri
+                        Find What You Need
                     </h2>
 
                     <p>
-                        Find textbooks, gadgets, furniture,
-                        cycles, hostel essentials and much
-                        more from fellow Rajagiri students.
+                        Buy useful products from fellow
+                        Rajagiri students at student-friendly prices.
                     </p>
+
+
+                    <button
+                        onClick={() => navigate("/buy")}
+                    >
+                        Browse Marketplace
+                    </button>
 
                 </div>
 
             </section>
 
 
-            {/* ================= MAIN ================= */}
+            {/* =========================
+                LATEST LISTINGS
+            ========================= */}
 
-            <main className="main-layout">
+            <main className="home-content">
 
-                {/* ================= SIDEBAR ================= */}
-
-                <aside className="sidebar">
-
-                    <h2>
-                        Filters
-                    </h2>
-
-
-                    <div className="filter-group">
-
-                        <label>
-                            Category
-                        </label>
-
-                        <select
-                            value={category}
-                            onChange={(e) =>
-                                setCategory(e.target.value)
-                            }
-                        >
-
-                            {categories.map((item) => (
-                                <option
-                                    key={item}
-                                    value={item}
-                                >
-                                    {item === "All"
-                                        ? "All Categories"
-                                        : item}
-                                </option>
-                            ))}
-
-                        </select>
-
-                    </div>
-
-
-                    <div className="filter-group">
-
-                        <label>
-                            Condition
-                        </label>
-
-                        <select
-                            value={condition}
-                            onChange={(e) =>
-                                setCondition(e.target.value)
-                            }
-                        >
-
-                            <option value="All">
-                                All
-                            </option>
-
-                            <option value="New">
-                                New
-                            </option>
-
-                            <option value="Used">
-                                Used
-                            </option>
-
-                        </select>
-
-                    </div>
-
-
-                    <div className="filter-group">
-
-                        <label>
-                            Maximum Price ($)
-                        </label>
-
-                        <input
-                            type="number"
-                            placeholder="Maximum price"
-                            value={maxPrice}
-                            onChange={(e) =>
-                                setMaxPrice(e.target.value)
-                            }
-                        />
-
-                    </div>
-
-
-                    <div className="filter-group">
-
-                        <label>
-                            Sort By
-                        </label>
-
-                        <select
-                            value={sortBy}
-                            onChange={(e) =>
-                                setSortBy(e.target.value)
-                            }
-                        >
-
-                            <option value="default">
-                                Default
-                            </option>
-
-                            <option value="low">
-                                Price : Low → High
-                            </option>
-
-                            <option value="high">
-                                Price : High → Low
-                            </option>
-
-                            <option value="az">
-                                Name : A → Z
-                            </option>
-
-                        </select>
-
-                    </div>
-
-
-                    <button
-                        className="primary-btn"
-                        onClick={() => {}}
-                    >
-                        Apply Filters
-                    </button>
-
-                    <button
-                        className="secondary-btn"
-                        onClick={clearFilters}
-                    >
-                        Clear Filters
-                    </button>
-
-                </aside>
-
-
-                {/* ================= CONTENT ================= */}
-
-                <section className="content">
-
-                    <div className="top-row">
-
-                        <div>
-
-                            <h2>
-                                Latest Listings
-                            </h2>
-
-                            <p id="resultCount">
-                                {filteredProducts.length} Product
-                                {filteredProducts.length !== 1
-                                    ? "s"
-                                    : ""}{" "}
-                                Found
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-                    {/* ================= PRODUCTS ================= */}
-
-                    {filteredProducts.length > 0 ? (
-
-                        <div className="products">
-
-                            {filteredProducts.map((product) => (
-                                <ProductCard
-                                    key={product.id}
-                                    product={product}
-                                />
-                            ))}
-
-                        </div>
-
-                    ) : (
-
-                        <div className="empty-state">
-
-                            <h2>
-                                No Products Found
-                            </h2>
-
-                            <p>
-                                Try changing the search
-                                or filter options.
-                            </p>
-
-                        </div>
-
-                    )}
-
-                </section>
-
-            </main>
-
-
-            {/* ================= FOOTER ================= */}
-
-            <footer>
-
-                <div className="footer-content">
+                <div className="section-heading">
 
                     <div>
 
-                        <h3>
-                            Spot
-                        </h3>
+                        <h2>
+                            Latest Listings
+                        </h2>
 
                         <p>
-                            Rajagiri Student Marketplace
+                            Recently added items from the Rajagiri community
                         </p>
 
                     </div>
 
 
-                    <div>
-
-                        <h4>
-                            Categories
-                        </h4>
-
-                        <ul>
-                            <li>Books</li>
-                            <li>Electronics</li>
-                            <li>Furniture</li>
-                            <li>Cycles</li>
-                        </ul>
-
-                    </div>
-
-
-                    <div>
-
-                        <h4>
-                            Support
-                        </h4>
-
-                        <ul>
-                            <li>Help</li>
-                            <li>Contact</li>
-                            <li>Privacy</li>
-                        </ul>
-
-                    </div>
+                    <button
+                        className="view-all-btn"
+                        onClick={() => navigate("/buy")}
+                    >
+                        View All
+                    </button>
 
                 </div>
 
 
-                <p className="copyright">
-                    © 2026 Spot Marketplace.
-                    Built for Rajagiri Students.
-                </p>
+                {/* =========================
+                    PRODUCTS
+                ========================= */}
+
+                <div className="home-products">
+
+                    {latestProducts.map((product) => (
+
+                        <div
+                            className="home-product-card"
+                            key={product.id}
+                        >
+
+
+                            {/* Image */}
+
+                            <div className="home-product-image">
+
+                                <img
+                                    src={`/${product.image}`}
+                                    alt={product.name}
+                                />
+
+                            </div>
+
+
+                            {/* Information */}
+
+                            <div className="home-product-info">
+
+                                <h3>
+                                    {product.name}
+                                </h3>
+
+
+                                <p className="home-price">
+                                    ₹{product.price}
+                                </p>
+
+
+                                <span className="home-condition">
+                                    {product.condition}
+                                </span>
+
+
+                                <p className="home-location">
+                                    📍 {product.location}
+                                </p>
+
+
+                                <button
+                                    className="home-details-btn"
+                                    onClick={() =>
+                                        navigate(
+                                            `/product/${product.id}`
+                                        )
+                                    }
+                                >
+                                    View Details
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    ))}
+
+                </div>
+
+
+                {/* =========================
+                    NO RESULTS
+                ========================= */}
+
+                {latestProducts.length === 0 && (
+
+                    <div className="no-products">
+
+                        <h3>
+                            No products found
+                        </h3>
+
+                        <p>
+                            Try another search or category.
+                        </p>
+
+                    </div>
+
+                )}
+
+            </main>
+
+
+            {/* =========================
+                FOOTER
+            ========================= */}
+
+            <footer className="home-footer">
+
+
+                <div>
+
+                    <h3>
+                        Spot.
+                    </h3>
+
+                    <p>
+                        Rajagiri Student Marketplace
+                    </p>
+
+                </div>
+
+
+                <div>
+
+                    <h4>
+                        Categories
+                    </h4>
+
+                    <p>
+                        Books
+                    </p>
+
+                    <p>
+                        Electronics
+                    </p>
+
+                    <p>
+                        Furniture
+                    </p>
+
+                    <p>
+                        Sports
+                    </p>
+
+                </div>
+
+
+                <div>
+
+                    <h4>
+                        Support
+                    </h4>
+
+                    <p>
+                        Help
+                    </p>
+
+                    <p>
+                        Contact
+                    </p>
+
+                    <p>
+                        Privacy
+                    </p>
+
+                </div>
 
             </footer>
 

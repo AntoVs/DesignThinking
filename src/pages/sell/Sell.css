@@ -1,0 +1,504 @@
+/* =========================
+   PAGE
+========================= */
+
+.sell-page {
+    min-height: 100vh;
+
+    background: #f7f9fc;
+
+    color: #222;
+
+    padding: 24px 0 50px;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.sell-header {
+    width: 92%;
+
+    max-width: 1100px;
+
+    margin: 0 auto 22px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+}
+
+.sell-header h1 {
+    margin: 0 0 5px;
+
+    font-size: 24px;
+}
+
+.sell-header p {
+    margin: 0;
+
+    color: #777;
+
+    font-size: 11px;
+}
+
+
+/* =========================
+   BACK BUTTON
+========================= */
+
+.back-btn {
+    padding: 8px 15px;
+
+    background: white;
+
+    border: 1px solid #d5dce3;
+
+    border-radius: 5px;
+
+    color: #333;
+
+    font-size: 11px;
+
+    cursor: pointer;
+}
+
+.back-btn:hover {
+    background: #f1f3f5;
+}
+
+
+/* =========================
+   MAIN CONTENT
+========================= */
+
+.sell-content {
+    width: 92%;
+
+    max-width: 1100px;
+
+    margin: 0 auto;
+
+    display: grid;
+
+    grid-template-columns: 1.7fr 1fr;
+
+    gap: 20px;
+
+    align-items: flex-start;
+}
+
+
+/* =========================
+   FORM
+========================= */
+
+.sell-form {
+    background: white;
+
+    padding: 25px;
+
+    border-radius: 8px;
+
+    border: 1px solid #e1e5e9;
+
+    box-shadow:
+        0 2px 10px rgba(0, 0, 0, 0.05);
+
+    box-sizing: border-box;
+}
+
+
+/* =========================
+   FORM GROUP
+========================= */
+
+.sell-form-group {
+    margin-bottom: 20px;
+}
+
+.sell-form-group label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    color: #222;
+}
+
+
+/* =========================
+   INPUTS
+========================= */
+
+.sell-form-group input,
+.sell-form-group select,
+.sell-form-group textarea {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    border: 1px solid #d5dce3;
+
+    border-radius: 6px;
+
+    outline: none;
+
+    background: white;
+
+    color: #222;
+
+    font-size: 11px;
+}
+
+
+/* Text input */
+
+.sell-form-group input[type="text"],
+.sell-form-group input[type="number"] {
+    height: 40px;
+
+    padding: 0 10px;
+}
+
+
+/* Select */
+
+.sell-form-group select {
+    height: 40px;
+
+    padding: 0 10px;
+
+    cursor: pointer;
+}
+
+
+/* Textarea */
+
+.sell-form-group textarea {
+    min-height: 88px;
+
+    padding: 10px;
+
+    resize: vertical;
+
+    font-family: inherit;
+}
+
+
+/* Placeholder */
+
+.sell-form-group input::placeholder,
+.sell-form-group textarea::placeholder {
+    color: #999;
+}
+
+
+/* Focus */
+
+.sell-form-group input:focus,
+.sell-form-group select:focus,
+.sell-form-group textarea:focus {
+    border-color: #0878d1;
+
+    box-shadow:
+        0 0 0 2px rgba(8, 120, 209, 0.1);
+}
+
+
+/* =========================
+   PRICE
+========================= */
+
+.price-input {
+    width: 100%;
+
+    height: 40px;
+
+    display: flex;
+
+    align-items: center;
+
+    box-sizing: border-box;
+
+    border: 1px solid #d5dce3;
+
+    border-radius: 6px;
+
+    background: white;
+
+    overflow: hidden;
+}
+
+.currency-symbol {
+    width: 38px;
+
+    height: 100%;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color: #555;
+
+    font-size: 12px;
+}
+
+.price-input input {
+    flex: 1;
+
+    width: auto !important;
+
+    height: 100%;
+
+    padding: 0 10px 0 2px !important;
+
+    border: none !important;
+
+    outline: none !important;
+
+    box-shadow: none !important;
+
+    background: transparent;
+
+    color: #222;
+
+    font-size: 11px;
+}
+
+.price-input input::placeholder {
+    color: #999;
+}
+
+.price-input:focus-within {
+    border-color: #0878d1;
+
+    box-shadow:
+        0 0 0 2px rgba(8, 120, 209, 0.1);
+}
+
+
+/* Remove number arrows */
+
+.price-input input::-webkit-outer-spin-button,
+.price-input input::-webkit-inner-spin-button {
+    margin: 0;
+}
+
+
+/* =========================
+   IMAGE UPLOAD
+========================= */
+
+.image-upload {
+    width: 100%;
+
+    min-height: 62px;
+
+    padding: 14px;
+
+    box-sizing: border-box;
+
+    border: 1px dashed #cbd4dd;
+
+    border-radius: 6px;
+
+    background: #fafbfd;
+}
+
+.image-upload input {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 5px;
+
+    border: 1px solid #d5dce3;
+
+    border-radius: 5px;
+
+    background: white;
+
+    color: #222;
+
+    font-size: 10px;
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+.sell-buttons {
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    margin-top: 28px;
+}
+
+.cancel-btn,
+.publish-btn {
+    height: 40px;
+
+    padding: 0 18px;
+
+    border-radius: 6px;
+
+    font-size: 11px;
+
+    cursor: pointer;
+}
+
+
+/* Cancel */
+
+.cancel-btn {
+    background: white;
+
+    border: 1px solid #d5dce3;
+
+    color: #555;
+}
+
+.cancel-btn:hover {
+    background: #f1f3f5;
+}
+
+
+/* Publish */
+
+.publish-btn {
+    background: #0878d1;
+
+    border: 1px solid #0878d1;
+
+    color: white;
+}
+
+.publish-btn:hover {
+    background: #0668b5;
+}
+
+
+/* =========================
+   TIPS
+========================= */
+
+.sell-tips {
+    background: white;
+
+    padding: 20px;
+
+    border-radius: 8px;
+
+    border: 1px solid #e1e5e9;
+
+    box-shadow:
+        0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.sell-tips h2 {
+    margin: 0 0 18px;
+
+    font-size: 16px;
+}
+
+.tip {
+    padding: 0 0 14px;
+
+    margin-bottom: 14px;
+
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.tip:last-child {
+    margin-bottom: 0;
+
+    padding-bottom: 0;
+
+    border-bottom: none;
+}
+
+.tip h3 {
+    margin: 0 0 4px;
+
+    font-size: 11px;
+}
+
+.tip p {
+    margin: 0;
+
+    color: #777;
+
+    font-size: 9px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 800px) {
+
+    .sell-content {
+        grid-template-columns: 1fr;
+    }
+
+    .sell-tips {
+        order: 2;
+    }
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 550px) {
+
+    .sell-page {
+        padding-top: 18px;
+    }
+
+    .sell-header {
+        width: 90%;
+    }
+
+    .sell-header h1 {
+        font-size: 21px;
+    }
+
+    .sell-content {
+        width: 90%;
+    }
+
+    .sell-form {
+        padding: 20px;
+    }
+
+    .sell-buttons {
+        flex-direction: column;
+    }
+
+    .cancel-btn,
+    .publish-btn {
+        width: 100%;
+    }
+
+}

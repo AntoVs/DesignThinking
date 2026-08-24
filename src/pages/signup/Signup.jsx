@@ -1,7 +1,10 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Signup.css";
 
-function Signup({ onLogin }) {
+function Signup() {
+    const navigate = useNavigate();
+
     const [uid, setUid] = useState("");
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
@@ -32,7 +35,10 @@ function Signup({ onLogin }) {
             password: password
         };
 
-        localStorage.setItem(`user_${uid}`, JSON.stringify(user));
+        localStorage.setItem(
+            `user_${uid}`,
+            JSON.stringify(user)
+        );
 
         setMessage("Account created successfully!");
         setMessageColor("cyan");
@@ -54,7 +60,10 @@ function Signup({ onLogin }) {
 
                 <form onSubmit={handleSubmit}>
 
-                    <label htmlFor="uid">College UID</label>
+                    <label htmlFor="uid">
+                        College UID
+                    </label>
+
                     <input
                         type="text"
                         id="uid"
@@ -64,7 +73,10 @@ function Signup({ onLogin }) {
                         required
                     />
 
-                    <label htmlFor="name">Name</label>
+                    <label htmlFor="name">
+                        Name
+                    </label>
+
                     <input
                         type="text"
                         id="name"
@@ -74,7 +86,10 @@ function Signup({ onLogin }) {
                         required
                     />
 
-                    <label htmlFor="password">Password</label>
+                    <label htmlFor="password">
+                        Password
+                    </label>
+
                     <input
                         type="password"
                         id="password"
@@ -115,7 +130,11 @@ function Signup({ onLogin }) {
 
                     <p className="login-link">
                         Already have an account?{" "}
-                        <span onClick={onLogin}>Login</span>
+                        <span
+                            onClick={() => navigate("/")}
+                        >
+                            Login
+                        </span>
                     </p>
 
                 </form>
