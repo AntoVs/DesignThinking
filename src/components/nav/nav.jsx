@@ -1,28 +1,82 @@
 import "./Nav.css";
 
-function Nav() {
+function Nav({ simple = false }) {
     return (
-        <nav className="nav">
+        <nav className={`nav ${simple ? "simple-nav" : ""}`}>
 
-            <a href="#home">
-                Home
-            </a>
+            {/* Logo */}
 
-            <a href="#products">
-                Buy
-            </a>
+            <div className="nav-brand">
 
-            <a href="#sell">
-                Sell
-            </a>
+                <div className="nav-logo-image">
+                    <img
+                        src="/images/logo.jpg"
+                        alt="Spot Logo"
+                    />
+                </div>
 
-            <a href="#listings">
-                My Listings
-            </a>
+                <div className="nav-brand-text">
 
-            <a href="#profile">
-                Profile
-            </a>
+                    <h1>
+                        Spot.
+                    </h1>
+
+                    <p>
+                        Rajagiri Marketplace
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            {/* Search */}
+            {/* Hidden when simple=true */}
+
+            {!simple && (
+                <div className="nav-search">
+
+                    <input
+                        type="text"
+                        placeholder="Search books, laptops, hostel items..."
+                    />
+
+                    <button>
+                        Search
+                    </button>
+
+                </div>
+            )}
+
+
+            {/* Navigation */}
+
+            <div className="nav-links">
+
+                <a href="/home">
+                    Home
+                </a>
+
+                <a href="/buy">
+                    Buy
+                </a>
+
+                <a href="/sell">
+                    Sell
+                </a>
+
+                <a href="/account">
+                    Account
+                </a>
+
+                <a
+                    href="/"
+                    className="logout-btn"
+                >
+                    Logout
+                </a>
+
+            </div>
 
         </nav>
     );
